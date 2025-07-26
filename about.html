@@ -12,11 +12,14 @@
         .card-shadow { box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
         .hover-lift { transition: all 0.3s ease; }
         .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .product-card { border: 2px solid transparent; transition: all 0.3s ease; }
+        .product-card { border: 2px solid transparent; transition: all 0.3s ease; cursor: pointer; }
         .product-card:hover { border-color: #667eea; }
         .product-card.selected { border-color: #667eea; background-color: #f0f4ff; }
         .animate-float { animation: float 6s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .quantity-btn { transition: all 0.2s ease; }
+        .quantity-btn:hover { transform: scale(1.1); }
+        .total-display { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -82,4 +85,283 @@
                 <div class="flex items-center mb-6">
                     <div class="bg-green-500 p-3 rounded-full mr-4">
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">เลือกสินค้า</h2>
+                </div>
+
+                <!-- T-Shirts -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-blue-100 p-2 rounded-lg mr-3">👕</span>
+                        เสื้อยืดที่ระลึก
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="product-card rounded-xl p-6 border-2" onclick="toggleProduct(this)">
+                            <div class="bg-gray-100 rounded-lg h-48 mb-4 flex items-center justify-center">
+                                <span class="text-4xl">👕</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">เสื้อยืดสีขาว</h4>
+                            <div class="space-y-2 mb-4">
+                                <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                                    <option>ขนาด S</option>
+                                    <option>ขนาด M</option>
+                                    <option>ขนาด L</option>
+                                    <option>ขนาด XL</option>
+                                    <option>ขนาด XXL</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-green-600">฿350</span>
+                                <div class="flex items-center space-x-2">
+                                    <button type="button" class="quantity-btn bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, -1)">-</button>
+                                    <span class="quantity w-8 text-center">0</span>
+                                    <button type="button" class="quantity-btn bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card rounded-xl p-6 border-2" onclick="toggleProduct(this)">
+                            <div class="bg-gray-100 rounded-lg h-48 mb-4 flex items-center justify-center">
+                                <span class="text-4xl">👕</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">เสื้อยืดสีดำ</h4>
+                            <div class="space-y-2 mb-4">
+                                <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                                    <option>ขนาด S</option>
+                                    <option>ขนาด M</option>
+                                    <option>ขนาด L</option>
+                                    <option>ขนาด XL</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-green-600">฿350</span>
+                                <div class="flex items-center space-x-2">
+                                    <button type="button" class="quantity-btn bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, -1)">-</button>
+                                    <span class="quantity w-8 text-center">0</span>
+                                    <button type="button" class="quantity-btn bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card rounded-xl p-6 border-2" onclick="toggleProduct(this)">
+                            <div class="bg-gray-100 rounded-lg h-48 mb-4 flex items-center justify-center">
+                                <span class="text-4xl">👕</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 mb-2">เสื้อยืดสีน้ำเงิน</h4>
+                            <div class="space-y-2 mb-4">
+                                <select class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                                    <option>ขนาด M</option>
+                                    <option>ขนาด L</option>
+                                    <option>ขนาด XL</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-green-600">฿350</span>
+                                <div class="flex items-center space-x-2">
+                                    <button type="button" class="quantity-btn bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, -1)">-</button>
+                                    <span class="quantity w-8 text-center">0</span>
+                                    <button type="button" class="quantity-btn bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Products -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Bags -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                            <span class="bg-purple-100 p-2 rounded-lg mr-3">🎒</span>
+                            กระเป๋า
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+                                            <span class="text-2xl">🎒</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">กระเป๋าเป้</h4>
+                                            <p class="text-green-600 font-bold">฿750</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button type="button" class="quantity-btn bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, -1)">-</button>
+                                        <span class="quantity w-8 text-center">0</span>
+                                        <button type="button" class="quantity-btn bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+                                            <span class="text-2xl">👜</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">กระเป๋าสะพาย</h4>
+                                            <p class="text-green-600 font-bold">฿650</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button type="button" class="quantity-btn bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, -1)">-</button>
+                                        <span class="quantity w-8 text-center">0</span>
+                                        <button type="button" class="quantity-btn bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cups -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                            <span class="bg-yellow-100 p-2 rounded-lg mr-3">☕</span>
+                            แก้ว
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+                                            <span class="text-2xl">☕</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">แก้วกาแฟ</h4>
+                                            <p class="text-green-600 font-bold">฿280</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button type="button" class="quantity-btn bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, -1)">-</button>
+                                        <span class="quantity w-8 text-center">0</span>
+                                        <button type="button" class="quantity-btn bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+                                            <span class="text-2xl">🥤</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">แก้วน้ำ</h4>
+                                            <p class="text-green-600 font-bold">฿220</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button type="button" class="quantity-btn bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, -1)">-</button>
+                                        <span class="quantity w-8 text-center">0</span>
+                                        <button type="button" class="quantity-btn bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center" onclick="updateQuantity(this, 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-red-100 p-2 rounded-lg mr-3">🎁</span>
+                        อุปกรณ์เสริม
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                            <div class="bg-gray-100 rounded-lg h-24 mb-3 flex items-center justify-center">
+                                <span class="text-2xl">🧢</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-2">หมวก</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-green-600 font-bold text-sm">฿320</span>
+                                <div class="flex items-center space-x-1">
+                                    <button type="button" class="quantity-btn bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, -1)">-</button>
+                                    <span class="quantity w-6 text-center text-xs">0</span>
+                                    <button type="button" class="quantity-btn bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                            <div class="bg-gray-100 rounded-lg h-24 mb-3 flex items-center justify-center">
+                                <span class="text-2xl">☂️</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-2">ร่ม</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-green-600 font-bold text-sm">฿450</span>
+                                <div class="flex items-center space-x-1">
+                                    <button type="button" class="quantity-btn bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, -1)">-</button>
+                                    <span class="quantity w-6 text-center text-xs">0</span>
+                                    <button type="button" class="quantity-btn bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                            <div class="bg-gray-100 rounded-lg h-24 mb-3 flex items-center justify-center">
+                                <span class="text-2xl">📌</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-2">เข็มกลัด</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-green-600 font-bold text-sm">฿150</span>
+                                <div class="flex items-center space-x-1">
+                                    <button type="button" class="quantity-btn bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, -1)">-</button>
+                                    <span class="quantity w-6 text-center text-xs">0</span>
+                                    <button type="button" class="quantity-btn bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card rounded-xl p-4 border-2" onclick="toggleProduct(this)">
+                            <div class="bg-gray-100 rounded-lg h-24 mb-3 flex items-center justify-center">
+                                <span class="text-2xl">📝</span>
+                            </div>
+                            <h4 class="font-semibold text-gray-800 text-sm mb-2">สมุด + ปากกา</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-green-600 font-bold text-sm">฿180</span>
+                                <div class="flex items-center space-x-1">
+                                    <button type="button" class="quantity-btn bg-gray-200 w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, -1)">-</button>
+                                    <span class="quantity w-6 text-center text-xs">0</span>
+                                    <button type="button" class="quantity-btn bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs" onclick="updateQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment and Delivery -->
+            <div class="bg-white rounded-2xl card-shadow p-8 hover-lift">
+                <div class="flex items-center mb-6">
+                    <div class="bg-orange-500 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">การชำระเงินและจัดส่ง</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Delivery Option -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">วิธีการรับสินค้า *</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500">
+                                <input type="radio" name="delivery" value="pickup" class="mr-3">
+                                <div class="flex items-center">
+                                    <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                                        <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">รับเองที่สาขา</p>
+                                        <p class="text-sm text-gray-600">ฟรี - รับที่อาคารวิทยาการคอมพิวเตอร์</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="flex items-center p-4 border-2 border-gray
